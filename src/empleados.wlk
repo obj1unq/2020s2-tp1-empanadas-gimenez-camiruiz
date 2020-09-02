@@ -1,18 +1,59 @@
 //Escribir aqui los objetos
 
 
+
+
 object galvan {
 	var sueldo = 15000
+	var dineroQueTiene = 0
+	var deuda = 0
 	
-} 
-
+	method obtenerSueldo(){
+		return sueldo
+	}
+	
+    method obtenerDeuda(){
+    	return deuda
+    }
+   
+   method dineroQueTiene(){
+   		return dineroQueTiene
+   }
+   
+   method aumentarSueldo(cantidad){
+   	  sueldo = cantidad
+   	 }
+   	 
+   method cobrarSueldo() {
+   	gimenez.pagaSueldo(sueldo)
+   	   	dineroQueTiene += sueldo
+   }
+   
+   method gastar(cantidad){
+   	 dineroQueTiene = 0.max(dineroQueTiene - deuda)
+   	 deuda += cantidad
+    
+   }
+   
+   method pagarDeudas(){
+   	dineroQueTiene = 0.max(dineroQueTiene - deuda)   	
+   	deuda = 0.max(deuda - dineroQueTiene)
+   	
+   	}
+   
+ }
+ 
+ 
+ 
+ 
+ 
 object baigorria {
 	var cantidadDeEmpanadasVendidas = 0
 	const montoPorEmpanada = 15
 	var sueldoPorVentas 
     var fondoTotal	
 	
-	method venderEmpenadas(cantidad){
+	method venderEmpanadas(cantidad){
 		cantidadDeEmpanadasVendidas += cantidad
 	}
 	
