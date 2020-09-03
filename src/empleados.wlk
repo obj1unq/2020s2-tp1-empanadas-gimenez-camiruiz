@@ -1,8 +1,6 @@
 //Escribir aqui los objetos
 
 
-
-
 object galvan {
 	var sueldo = 15000
 	var dineroQueTiene = 0
@@ -28,24 +26,28 @@ object galvan {
    	gimenez.pagaSueldo(sueldo)
    	   	dineroQueTiene += sueldo
    }
-   
-   method gastar(cantidad){
-   	 dineroQueTiene = 0.max(dineroQueTiene - deuda)
-   	 deuda += cantidad
+
     
-   }
+    method gastar(cantidad){
+    	if (cantidad > dineroQueTiene){
+    		deuda += cantidad - dineroQueTiene
+			dineroQueTiene = 0    	
+    	}  else {
+    		dineroQueTiene -= cantidad	
+    	}
+    }
+
    
    method pagarDeudas(){
-   	dineroQueTiene = 0.max(dineroQueTiene - deuda)   	
-   	deuda = 0.max(deuda - dineroQueTiene)
-   	
-   	}
-   
+   	if (dineroQueTiene > 0){ 
+    dineroQueTiene = 0.max(dineroQueTiene - deuda)  
+    deuda = 0.max(deuda - sueldo)   
+   	} else {
+     (dineroQueTiene = 0)  
+    } 
+  }
  }
- 
- 
- 
- 
+
  
 object baigorria {
 	var cantidadDeEmpanadasVendidas = 0
@@ -78,7 +80,7 @@ object baigorria {
      method totalCobrado(){
      	return fondoTotal
      }
-  
+ 
 }
 
 object gimenez {
