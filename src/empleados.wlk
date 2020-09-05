@@ -3,72 +3,86 @@
 
 object galvan {
 	var sueldo = 15000
-	var dineroQueTiene = 0
+	var dinero = 0
 	var deuda = 0
 	
-	method obtenerSueldo(){
+	
+	//GETTER
+	method sueldo(){
 		return sueldo
 	}
 	
-    method obtenerDeuda(){
+    method deuda(){
     	return deuda
     }
    
-   method dineroQueTiene(){
-   		return dineroQueTiene
+   method dinero(){
+   		return dinero
    }
    
-   method aumentarSueldo(cantidad){
+   //SETTER
+   method sueldo(cantidad){
    	  sueldo = cantidad
    	 }
    	 
    method cobrarSueldo() {
-   	gimenez.pagaSueldo(sueldo)
-   	   	dineroQueTiene += sueldo
+   	   	dinero += sueldo
    }
 
     
     method gastar(cantidad){
-    	if (cantidad > dineroQueTiene){
-    		deuda += cantidad - dineroQueTiene
-			dineroQueTiene = 0    	
+    	if (cantidad > dinero){
+    		deuda += cantidad - dinero
+			dinero = 0    	
     	}  else {
-    		dineroQueTiene -= cantidad	
+    		dinero -= cantidad	
     	}
     }
 
    
    method pagarDeudas(){
-   	if (dineroQueTiene > 0){ 
-    dineroQueTiene = 0.max(dineroQueTiene - deuda)  
+   	if (dinero > 0){ 
+    dinero = 0.max(dinero - deuda)  
     deuda = 0.max(deuda - sueldo)   
    	} else {
-     (dineroQueTiene = 0)  
+     (dinero = 0)  
     } 
   }
+  
+   method mesNuevo(){
+     	//nada
+     }
+ 
  }
-
  
 object baigorria {
 	var cantidadDeEmpanadasVendidas = 0
 	const montoPorEmpanada = 15
-	var sueldoPorVentas 
-    var fondoTotal	
+	var sueldoPorVentas = 0 
+    var fondoTotal = 0	
 	
-	method venderEmpanadas(cantidad){
+	method vender(cantidad){
 		cantidadDeEmpanadasVendidas += cantidad
+		self.calcularSueldo()
 	}
 	
 	method calcularSueldo(){
-		sueldoPorVentas = cantidadDeEmpanadasVendidas * montoPorEmpanada 		
+		sueldoPorVentas = cantidadDeEmpanadasVendidas * montoPorEmpanada 
+				
 	}
       
-      method cobraSueldo(){
-      	gimenez.pagaSueldo(sueldoPorVentas)
+      method cobrarSueldo(){
+   	   	fondoTotal += sueldoPorVentas
     }
     
-    method consultarSueldo(){
+    //GETTER
+    method sueldo(){
      	return sueldoPorVentas
+     }
+     
+     //SETTER
+     method sueldo(cantidad){
+     	fondoTotal = cantidad
      }
        
      method mesNuevo(){
@@ -84,13 +98,17 @@ object baigorria {
 }
 
 object gimenez {
-	var fondoParaSueldos = 30000
+	var fondoParaSueldos = 300000
 	
-	method pagaSueldo(cantidad){
-		fondoParaSueldos -= cantidad
+
+	method pagarSueldo(persona){
+	    fondoParaSueldos -= persona.sueldo() 
+	    persona.mesNuevo()
+	    persona.cobrarSueldo()
+	    
 	}
 	
-	method informeActualDelFondo() {
+	method fondo() {
 		return fondoParaSueldos
 	}
 	
