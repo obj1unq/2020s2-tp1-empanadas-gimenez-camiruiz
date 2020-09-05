@@ -10,15 +10,15 @@ object galvan {
 	//GETTER
 	method sueldo(){
 		return sueldo
-	}
-	
+	 }
+	 
     method deuda(){
     	return deuda
-    }
+     }
    
    method dinero(){
    		return dinero
-   }
+  	 }
    
    //SETTER
    method sueldo(cantidad){
@@ -27,17 +27,18 @@ object galvan {
    	 
    method cobrarSueldo() {
    	   	dinero += sueldo
-   }
+   	   	self.pagarDeudas()
+	 }
 
     
-    method gastar(cantidad){
+   method gastar(cantidad){
     	if (cantidad > dinero){
     		deuda += cantidad - dinero
 			dinero = 0    	
     	}  else {
     		dinero -= cantidad	
     	}
-    }
+}
 
    
    method pagarDeudas(){
