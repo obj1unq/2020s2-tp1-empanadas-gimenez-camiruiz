@@ -86,7 +86,6 @@ object baigorria {
      }
        
      method mesNuevo(){
-     	fondoTotal = sueldoPorVentas
         cantidadDeEmpanadasVendidas = 0
         self.calcularSueldo()
      }
@@ -103,8 +102,8 @@ object gimenez {
 
 	method pagarSueldo(persona){
 	    fondoParaSueldos -= persona.sueldo() 
-	    persona.mesNuevo()
-	    persona.cobrarSueldo()
+	    persona.cobrarSueldo()	
+	    persona.mesNuevo()    
 	    
 	}
 	
